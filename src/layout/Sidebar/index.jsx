@@ -39,7 +39,7 @@ const Sidebar = () => {
 								)}`
 					}
 				}}>
-				<Header />
+				{/* <Header /> */}
 				<ContentSidebar />
 				<Box
 					sx={{

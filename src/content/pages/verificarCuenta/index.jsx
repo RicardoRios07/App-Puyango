@@ -14,13 +14,27 @@ const VerificarCuenta = () => {
     }, [token]);
 
     useEffect(() => {
-        if (data && data.status === 'success') {
+        let timeoutId;
 
-            if (loading) return <div>Verificando cuenta...</div>;
-            if (error) return <div>Error al verificar la cuenta: {error.message}</div>;
+        if (data && data.status === 'success') {
+            timeoutId = setTimeout(() => {
+                navigate('/login');
+            }, 10000); 
         }
+
+        return () => {
+            if (timeoutId) {
+                clearTimeout(timeoutId);
+            }
+        };
     }, [data, navigate]);
 
+    if (loading) return <div>Verificando cuenta...</div>;
+    if (error) return <div>Error al verificar la cuenta: {error.message}</div>;
+
+    if (data && data.status === 'success') {
+        return <div>Cuenta verificada exitosamente.</div>;
+    }
 
     return null;
 };
