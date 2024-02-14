@@ -24,28 +24,25 @@ const ContentSidebar = () => {
 		<>
 			<Box
 				sx={{
-					width: theme.sidebar.width,
-					minWidth: theme.sidebar.width,
+					// width: theme.sidebar.width,
+					// minWidth: theme.sidebar.width,
+					widht:20,
 					color: theme.colors.alpha.trueWhite[70],
-					zIndex: 7,
-					height: '100%',
-					pt: theme.sidebar.paddingTop,
-					pb: '51px',
-					mt: theme.header.height,
-					borderTopRightRadius: '7em',
-					display: {
-						xs: 'none',
-						lg: 'inline-block'
-					},
+					zIndex: 7,	
+					height: '90%',
+					borderRadius: 2,
 					position: 'fixed',
-					left: 0,
+					py:10,
+					mt:5,
+					marginBottom:5,
+					boxShadow:2,
+					left: 50,
+					
 					top: 0,
 					background:
 						theme.palette.mode === 'dark'
 							? alpha(lighten(theme.header.background, 0.1), 0.5)
 							: theme.colors.primary.main,
-					boxShadow:
-						theme.palette.mode === 'dark' ? theme.sidebar.boxShadow : 'none'
 				}}>
 				<Box position='relative' height='80%' width='100%'>
 					<Scrollbar>
@@ -67,7 +64,6 @@ const ContentSidebar = () => {
 								position: 'relative',
 								fontSize: '16px',
 								justifyContent: 'start',
-								pl: '50px',
 								color: 'white.main'
 							}}>
 							Cerrar sesión

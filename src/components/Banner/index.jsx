@@ -1,12 +1,13 @@
 import React from 'react';
-import { Box, IconButton, useTheme } from '@mui/material';
+import { Box, IconButton, useTheme, Typography } from '@mui/material';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import logo from '/img/gadPuyangoOrg.png';
+import footerImage from '/img/tikee-h-blanco.png';
 
 const Banner = ({ backgroundImage }) => {
-    const theme = useTheme(); 
+    const theme = useTheme();
 
     return (
         <Box
@@ -18,29 +19,29 @@ const Banner = ({ backgroundImage }) => {
                 backgroundPosition: 'center',
                 display: 'flex',
                 flexDirection: 'column',
-                justifyContent: 'flex-end', 
+                justifyContent: 'flex-end',
                 alignItems: 'center',
                 position: 'relative',
             }}
         >
-            <Box sx={{ 
+            <Box sx={{
                 width: '100%',
                 display: 'flex',
                 flexDirection: 'column',
-                alignItems: 'center', 
-                pb: theme.spacing(4), 
+                alignItems: 'center',
+                pb: theme.spacing(4),
             }}>
-                <Box sx={{ 
-                    width: 'auto', 
-                    height: 150, 
+                <Box sx={{
+                    width: 'auto',
+                    height: 150,
                     display: 'flex',
-                    justifyContent: 'center', 
-                    mb: theme.spacing(2), 
+                    justifyContent: 'center',
+                    mb: theme.spacing(2),
                 }}>
                     <img src={logo} alt="GAD Puyango" style={{ height: '100%', maxWidth: '100%' }} />
                 </Box>
-                
-                <Box sx={{ 
+
+                <Box sx={{
                     display: 'flex',
                     '& > *': {
                         margin: theme.spacing(1),
@@ -56,9 +57,31 @@ const Banner = ({ backgroundImage }) => {
                         <WhatsAppIcon sx={{ color: theme.palette.common.white }} />
                     </IconButton>
                 </Box>
+                {/* Footer Section */}
+                <Box sx={{
+                    width: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    pt: theme.spacing(2),
+                    pb: theme.spacing(2),
+                }}>
+                    <Typography variant="h4" color='white'>
+                        Powered by:
+                    </Typography>
+                    <Box sx={{
+                        width: 'auto',
+                        height: 'auto', 
+                        display: 'flex',
+                        justifyContent: 'center',
+                        mt: theme.spacing(1),
+                    }}>
+                        <img src={footerImage} alt="Footer Logo" style={{ maxWidth: '100%', maxHeight: '50px' }} />
+                    </Box>
+                </Box>
             </Box>
         </Box>
     );
-};
+}
 
 export default Banner;

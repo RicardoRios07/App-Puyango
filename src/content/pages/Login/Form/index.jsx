@@ -5,41 +5,38 @@ import { Box, Typography, Link } from '@mui/material';
 import useFetchData from 'src/hooks/useFetchData';
 import { useNavigate } from 'react-router-dom';
 import { configSession } from 'src/utils/configSession';
+import SnackBarWrapper from 'src/components/SnackBar';
+import { useSnackbar } from 'src/hooks/useSnackbar';
+
 
 const Form = () => {
     const [formData, setFormData] = useState({ email: '', password: '' });
     const navigate = useNavigate();
     const { data, error, loading, executeFetch } = useFetchData();
     const { setSession } = configSession();
+    const { isOpen: isOpenSnack, handleClose: handleCloseSnack, handleOpen: handleOpenSnack } = useSnackbar();
+    const [snackbarMessage, setSnackbarMessage] = useState('');
+    const [snackbarType, setSnackbarType] = useState('success');
+
     useEffect(() => {
         if (data && data.code === 200) {
-            navigate('/denuncias');
+            console.log("TOKEN: ?================", data.data.token)
+            setSession(data.data.token); 
+            navigate('/inicio');
+        } else if (data && data.code !== 200) {
+            setSnackbarMessage(error.message || 'Ocurrió un error durante el registro.');
+            setSnackbarType('error');
+            handleOpenSnack();
         }
-    }, [data, navigate]);
+    }, [data, error, navigate]);
 
     const handleChange = (event) => {
         setFormData({ ...formData, [event.target.name]: event.target.value });
-    };
-    const handleLoginSuccess = (loginResponse) => {
-        setSession({ token: loginResponse.token });
-        // Otras acciones necesarias después del login
     };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         executeFetch({ endPoint: 'auth/login', method: 'POST', data: formData });
-    };
-
-    const handleLogin = async (loginData) => {
-        const loginResponse = await executeFetch({
-            endPoint: 'auth/login',
-            method: 'POST',
-            data: loginData
-        });
-    
-        if (loginResponse && loginResponse.data.token) {
-            handleLoginSuccess(loginResponse);
-        }
     };
 
     return (
@@ -99,6 +96,13 @@ const Form = () => {
                     {'Ingresa aquí'}
                 </Link>
             </Typography>
+            <SnackBarWrapper
+                isOpen={isOpenSnack}
+                duration={6000}
+                handleClose={handleCloseSnack}
+                type={snackbarType}
+                text={snackbarMessage}
+            />
         </Box>
     );
 };

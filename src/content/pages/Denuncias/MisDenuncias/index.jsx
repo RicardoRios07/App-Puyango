@@ -6,7 +6,7 @@ const Denuncias = () => {
     const { data, error, loading, executeFetch } = useFetchData();
 
     useEffect(() => {
-        executeFetch({ endPoint: 'denuncias/getAllDenuncias', method: 'GET' });
+        executeFetch({ endPoint: 'denuncias/getDenunciasUser', method: 'GET' });
     }, []);
 
     if (loading) return <Typography>Cargando denuncias...</Typography>;
@@ -18,7 +18,7 @@ const Denuncias = () => {
             <Grid container spacing={2}>
                 {data && data.status === 'success' && data.data.map((denuncia) => (
                     <Grid item xs={12} sm={6} md={4} lg={3} xl={3} key={denuncia._id}>
-                        <Card sx={{ maxWidth: 445, height: '100%' }}>
+                        <Card sx={{ maxWidth: 345, height: '100%' }}>
                             <CardMedia
                                 component="img"
                                 height="140"

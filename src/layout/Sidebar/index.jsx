@@ -50,15 +50,15 @@ const Sidebar = () => {
 						pt: header.height,
 						[breakpoints.up('lg')]: {
 							ml: sidebar.width,
-							pt: `${paddingTopBox - 18}px`
-						}
+							pt: 10
+						}	
 					}}>
 					<Box
 						sx={{
 							display: 'block',
 							p: {
-								xs: spacing(0, 2),
-								lg: spacing(0, 5)
+								xs: spacing(0, 0),
+								lg: spacing(0, 0)
 							},
 							'& .MuiGrid-container': {
 								mt: 0

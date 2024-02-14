@@ -28,19 +28,17 @@ const Form = () => {
             setSnackbarType('success');
             handleOpenSnack();
 
-            // Retrasar la navegación durante 5 segundos
             const timer = setTimeout(() => {
                 navigate('/login');
-            }, 3000);
+            }, 5000);
 
-            // Limpieza del timer al desmontar el componente
             return () => clearTimeout(timer);
         } else if (data && data.code !== 200) {
-            setSnackbarMessage(data.message || 'Ocurrió un error durante el registro.');
+            setSnackbarMessage(error.message || 'Ocurrió un error durante el registro.');
             setSnackbarType('error');
             handleOpenSnack();
         }
-    }, [data, navigate, handleOpenSnack]);
+    }, [data,error, navigate]);
 
     const handleChange = (event) => {
         setFormData({ ...formData, [event.target.name]: event.target.value });

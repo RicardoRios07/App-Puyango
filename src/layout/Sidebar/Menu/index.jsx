@@ -1,65 +1,92 @@
-import React from 'react'
-
-import { Box, Button, ListItem } from '@mui/material'
-import { NavLink } from 'react-router-dom'
-import { RiBankFill, RiHome5Fill } from '@remixicon/react'
+import React from 'react';
+import { Box, Button, Stack, Typography } from '@mui/material';
+import { NavLink } from 'react-router-dom';
+import { RiHome4Line, RiFileEditLine, RiStackLine, RiPieChart2Line, RiQuestionLine } from '@remixicon/react';
+import GadImage from '/img/LogoGadBlanco.png';
 
 const Menu = () => {
 	return (
-		<Box sx={{
-			p: '0 40px 0 0',
-			'& .MuiButton-root': {
-				backgroundColor: 'transparent',
-				position: 'relative',
-				fontSize: '16px',
-				justifyContent: 'start',
-				pl: '50px',
-				'&:before': {
-					content: '""',
-					position: 'absolute',
-					width: '6px',
-					height: '70%',
-					backgroundColor: 'white',
-					left: 0,
-					borderTopRightRadius: '10px',
-					borderBottomRightRadius: '10px',
-					display: 'none'
+		<Box
+			sx={{
+				display: 'flex',
+				flexDirection: 'column',
+				alignItems: 'center',
+				justifyContent: 'space-between', // Space between items
+				height: '100%', // Full height of the sidebar
+				width: '100%', // Full width of the sidebar
+				bgcolor: '#23A338', // Sidebar background color
+				py: 8, // Padding top and bottom
+				'& .MuiButton-root': {
+					backgroundColor: 'transparent',
+					display: 'flex',
+					flexDirection: 'column', // Stack icon and text vertically
+					alignItems: 'center', // Center align items
+					fontSize: '16px',
+					width: '100%', // Button full width
+					py: 2, // Padding top and bottom
+					color: '#FFFFFF', // Text color
+					textTransform: 'none', // No uppercase transformation
+					'&.active': {
+						backgroundColor: 'rgba(255, 255, 255, 0.2)', // Active item background color
+					},
+					'&:hover': {
+						backgroundColor: 'rgba(255, 255, 255, 0.1)', // Hover background color
+					},
+					'& .MuiButton-startIcon': {
+						m: 0, // Remove margin from the icon
+						marginBottom: 1, // Space between icon and text
+					},
 				},
-				'&.active': {
-					'&:before': {
-						display: 'block',
-					}
-				}
-			},
-			'& .MuiButton-startIcon': {
-				mr: '23px'
-			},
-			'& .MuiListItem-root': {
-				p: '2px 0px'
-			}
-		}}>
-			<ListItem>
-				<Button
-					fullWidth
-					variant='contained'
-					component={NavLink}
-					to='/dashboard'
-					startIcon={<RiHome5Fill />}>
-					Inicio
-				</Button>
-			</ListItem>
-			<ListItem>
-				<Button
-					fullWidth
-					variant='contained'
-					component={NavLink}
-					to='/cooperativas'
-					startIcon={<RiBankFill />}>
-					Cooperativas
-				</Button>
-			</ListItem>
+				'img': {
+					maxWidth: '80%',
+					maxHeight: '100px',
+					marginBottom: 4, // Space below the logo
+				},
+			}}
+		>
+			<img src={GadImage} alt="Logo" />
+			<Button
+				component={NavLink}
+				to='/inicio'
+				startIcon={<RiHome4Line />}
+				activeClassName="active"
+			>
+				Inicio
+			</Button>
+			<Button
+				component={NavLink}
+				to='/new-complaint'
+				startIcon={<RiFileEditLine />}
+				activeClassName="active"
+			>
+				Nueva Denuncia
+			</Button>
+			<Button
+				component={NavLink}
+				to='/misDenuncias'
+				startIcon={<RiStackLine />}
+				activeClassName="active"
+			>
+				Mis Denuncias
+			</Button>
+			{/* <Button
+				component={NavLink}
+				to='/analytics'
+				startIcon={<RiPieChart2Line />}
+				activeClassName="active"
+			>
+				Analytics
+			</Button>
+			<Button
+				component={NavLink}
+				to='/help'
+				startIcon={<RiQuestionLine />}
+				activeClassName="active"
+			>
+				Ayuda
+			</Button> */}
 		</Box>
-	)
-}
+	);
+};
 
-export default Menu
+export default Menu;

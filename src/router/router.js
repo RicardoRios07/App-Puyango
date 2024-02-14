@@ -8,7 +8,9 @@ import SidebarLayout from 'src/layout/Sidebar';
 const LoginPage = Loader(lazy(() => import('src/content/pages/Login')));
 const RegisterPage = Loader(lazy(() => import('src/content/pages/Registro')));
 const DenunciasPage = Loader(lazy(() => import('src/content/pages/Denuncias')));
+const MisDenunciasPage = Loader(lazy(() => import('src/content/pages/Denuncias/MisDenuncias')));
 const HomePage = Loader(lazy(() => import('src/content/pages/Home')));
+const VerificarCuenta = Loader(lazy(() => import('src/content/pages/verificarCuenta')));
 
 // ROUTES
 export const routes = [
@@ -29,7 +31,10 @@ export const routes = [
                 path: 'register',
                 element: <RegisterPage />,
             },
-            // Redirige cualquier otra ruta no definida a Home
+            {
+                path: 'verificarCuenta/:token',
+                element: <VerificarCuenta />,
+            },
             {
                 path: '*',
                 element: <Navigate to="/" replace />,
@@ -41,10 +46,13 @@ export const routes = [
         element: <SidebarLayout />,
         children: [
             {
-                path: 'denuncias',
+                path: 'inicio',
                 element: <DenunciasPage />,
             },
-            // Redirige la ruta "dashboard" a "denuncias" como ejemplo
+            {
+                path: 'misDenuncias',
+                element: <MisDenunciasPage />,
+            },
             {
                 path: 'dashboard',
                 element: <Navigate to="/denuncias" replace />,
