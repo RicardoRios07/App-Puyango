@@ -13,7 +13,7 @@ const Login = () => {
 
     return (
         <Box sx={{ display: 'flex', height: '100vh' }}>
-            <Banner backgroundImage="public/img/background.png" />
+            <Banner backgroundImage="/img/background.png" />
             <Form 
             />
         </Box>
