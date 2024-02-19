@@ -250,7 +250,8 @@ const theme = createTheme({
 		height: '100px',
 		background: colors.layout.general.bodyBg,
 		boxShadow: colors.shadows.cardSm,
-		textColor: '#a3b0c2'
+		textColor: '#a3b0c2',
+		boxShadow: '0px 0px 0px rgba(159, 162, 191, .18), 0px 0px 0px rgba(159, 162, 191, 0.32)',
 	},
 	spacing: 9,
 	palette: {

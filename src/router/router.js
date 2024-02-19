@@ -7,10 +7,11 @@ import SidebarLayout from 'src/layout/Sidebar';
 // PAGES
 const LoginPage = Loader(lazy(() => import('src/content/pages/Login')));
 const RegisterPage = Loader(lazy(() => import('src/content/pages/Registro')));
-const DenunciasPage = Loader(lazy(() => import('src/content/pages/Denuncias')));
+const AllDenunciasPage = Loader(lazy(() => import('src/content/pages/Denuncias/Listar')));
 const MisDenunciasPage = Loader(lazy(() => import('src/content/pages/Denuncias/MisDenuncias')));
 const HomePage = Loader(lazy(() => import('src/content/pages/Home')));
 const VerificarCuenta = Loader(lazy(() => import('src/content/pages/verificarCuenta')));
+const DenunciaFormPage = Loader(lazy(() => import('src/content/pages/Denuncias/Form')));
 
 // ROUTES
 export const routes = [
@@ -47,17 +48,16 @@ export const routes = [
         children: [
             {
                 path: 'inicio',
-                element: <DenunciasPage />,
+                element: <AllDenunciasPage />,
             },
             {
                 path: 'misDenuncias',
                 element: <MisDenunciasPage />,
             },
             {
-                path: 'dashboard',
-                element: <Navigate to="/denuncias" replace />,
+                path: 'nuevaDenuncia',
+                element: <DenunciaFormPage />,
             },
-            // Redirige cualquier otra ruta no definida a Home
             {
                 path: '*',
                 element: <Navigate to="/" replace />,

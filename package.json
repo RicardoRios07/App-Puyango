@@ -23,6 +23,7 @@
     "react-custom-scrollbars-2": "^4.5.0",
     "react-dom": "^18.2.0",
     "react-helmet-async": "^2.0.4",
+    "react-places-autocomplete": "^7.3.0",
     "react-router-dom": "^6.21.3"
   },
   "devDependencies": {

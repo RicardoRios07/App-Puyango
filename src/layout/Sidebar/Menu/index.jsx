@@ -49,15 +49,15 @@ const Menu = () => {
 				component={NavLink}
 				to='/inicio'
 				startIcon={<RiHome4Line />}
-				activeClassName="active"
+				activeclassname="active"
 			>
 				Inicio
 			</Button>
 			<Button
 				component={NavLink}
-				to='/new-complaint'
+				to='/nuevaDenuncia'
 				startIcon={<RiFileEditLine />}
-				activeClassName="active"
+				activeclassname="active"
 			>
 				Nueva Denuncia
 			</Button>
@@ -65,7 +65,7 @@ const Menu = () => {
 				component={NavLink}
 				to='/misDenuncias'
 				startIcon={<RiStackLine />}
-				activeClassName="active"
+				activeclassname="active"
 			>
 				Mis Denuncias
 			</Button>

@@ -39,19 +39,20 @@ const Sidebar = () => {
 								)}`
 					}
 				}}>
-				{/* <Header /> */}
+				<Header />
 				<ContentSidebar />
 				<Box
 					sx={{
 						position: 'relative',
-						zIndex: 5,
+						zIndex: 1,
 						display: 'block',
 						flex: 1,
 						pt: header.height,
 						[breakpoints.up('lg')]: {
 							ml: sidebar.width,
-							pt: 10
-						}	
+							pt: 5,
+							pb: 10
+						}
 					}}>
 					<Box
 						sx={{
@@ -61,8 +62,18 @@ const Sidebar = () => {
 								lg: spacing(0, 0)
 							},
 							'& .MuiGrid-container': {
-								mt: 0
-							}
+								[breakpoints.up('lg')]: {
+									mt: 5,
+									mb: 5,
+									ml: 5,
+									mr: 0,
+								},
+								mt: 5,
+								mb: 5,
+								ml: 5,
+
+							},
+							zIndex: 1,
 						}}>
 						<Outlet />
 					</Box>

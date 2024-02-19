@@ -17,8 +17,8 @@ const Denuncias = () => {
         <Container>
             <Grid container spacing={2}>
                 {data && data.status === 'success' && data.data.map((denuncia) => (
-                    <Grid item xs={12} sm={6} md={4} lg={3} xl={3} key={denuncia._id}>
-                        <Card sx={{ maxWidth: 345, height: '100%' }}>
+                    <Grid item xs={12} sm={6} md={4} lg={4} xl={3} key={denuncia._id}>
+                        <Card sx={{ maxWidth: 445, height: '100%' }}>
                             <CardMedia
                                 component="img"
                                 height="140"
