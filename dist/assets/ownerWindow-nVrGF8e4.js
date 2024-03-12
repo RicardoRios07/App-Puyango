@@ -1,0 +1,1 @@
+import{q as r}from"./index-D8t92y6h.js";function a(...n){return n.reduce((t,e)=>e==null?t:function(...o){t.apply(this,o),e.apply(this,o)},()=>{})}function d(n,t=166){let e;function i(...o){const u=()=>{n.apply(this,o)};clearTimeout(e),e=setTimeout(u,t)}return i.clear=()=>{clearTimeout(e)},i}function l(n){return r(n).defaultView||window}export{a as c,d,l as o};
