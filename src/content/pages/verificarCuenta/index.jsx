@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { Grid, Typography, CircularProgress } from '@mui/material';
+import { CheckCircleOutline as CheckCircleOutlineIcon, ErrorOutline as ErrorOutlineIcon } from '@mui/icons-material';
 import useFetchData from 'src/hooks/useFetchData';
 
 const VerificarCuenta = () => {
@@ -29,14 +31,34 @@ const VerificarCuenta = () => {
         };
     }, [data, navigate]);
 
-    if (loading) return <div>Verificando cuenta...</div>;
-    if (error) return <div>Error al verificar la cuenta: {error.message}</div>;
+    if (loading) return <CircularProgress />;
 
-    if (data && data.status === 'success') {
-        return <div>Cuenta verificada exitosamente.</div>;
-    }
-
-    return null;
+    return (
+        <Grid container spacing={2} alignItems="center" justifyContent="center">
+            <Grid item xs={12} textAlign="center">
+                {error ? (
+                    <div>
+                        <ErrorOutlineIcon color="error" fontSize="large" />
+                        <Typography variant="h6" color="error" gutterBottom>
+                            Error al verificar la cuenta
+                        </Typography>
+                        <Typography variant="body1">{error.message}</Typography>
+                    </div>
+                ) : null}
+                {data && data.status === 'success' ? (
+                    <div>
+                        <CheckCircleOutlineIcon color="success" fontSize="large" />
+                        <Typography variant="h6" color="success" gutterBottom>
+                            Cuenta verificada exitosamente
+                        </Typography>
+                        <Typography variant="body1">
+                            Serás redirigido a la página de inicio de sesión en 10 segundos.
+                        </Typography>
+                    </div>
+                ) : null}
+            </Grid>
+        </Grid>
+    );
 };
 
 export default VerificarCuenta;

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Input from 'src/components/Input/index';
 import Button from 'src/components/Button/index';
-import { Box, Typography, Link } from '@mui/material';
+import { Box, Typography, Link, IconButton, InputAdornment, Tooltip } from '@mui/material';
+import { VisibilityOff, Visibility } from '@mui/icons-material';
 import useFetchData from 'src/hooks/useFetchData';
 import { useNavigate } from 'react-router-dom';
 import SnackBarWrapper from 'src/components/SnackBar';
 import { useSnackbar } from 'src/hooks/useSnackbar';
-
 
 const Form = () => {
     const [formData, setFormData] = useState({
@@ -16,6 +16,7 @@ const Form = () => {
         email: '',
         password: ''
     });
+    const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
     const { data, error, loading, executeFetch } = useFetchData();
     const { isOpen: isOpenSnack, handleClose: handleCloseSnack, handleOpen: handleOpenSnack } = useSnackbar();
@@ -38,7 +39,7 @@ const Form = () => {
             setSnackbarType('error');
             handleOpenSnack();
         }
-    }, [data,error, navigate]);
+    }, [data, error, navigate]);
 
     const handleChange = (event) => {
         setFormData({ ...formData, [event.target.name]: event.target.value });
@@ -47,6 +48,10 @@ const Form = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         executeFetch({ endPoint: 'auth/register', method: 'POST', data: formData });
+    };
+
+    const handleTogglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
     };
 
     return (
@@ -111,12 +116,24 @@ const Form = () => {
                 />
                 <Input
                     label="Contraseña"
-                    type="password"
+                    type={showPassword ? 'text' : 'password'}
                     value={formData.password}
                     onChange={handleChange}
                     name="password"
                     margin="normal"
                     fullWidth
+                    endAdornment={
+                        <InputAdornment position="end">
+                            <Tooltip title={showPassword ?  'Ocultar Contraseña' : 'Mostrar contraseña'  } arrow>
+                            <IconButton
+                                aria-label="toggle password visibility"
+                                onClick={handleTogglePasswordVisibility}
+                            >
+                                {showPassword ? <VisibilityOff color='primary' /> : <Visibility color='primary' />}
+                            </IconButton>
+                            </Tooltip>
+                        </InputAdornment>
+                    }
                 />
                 <Button
                     text="Siguiente"

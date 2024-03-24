@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import Input from 'src/components/Input/index';
-import Button from 'src/components/Button/index';
-import { Box, Typography, Link } from '@mui/material';
+import Input from 'src/components/Input'; 
+import Button from 'src/components/Button';
+import { Box, Typography, Link, InputAdornment, IconButton, Tooltip } from '@mui/material';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 import useFetchData from 'src/hooks/useFetchData';
 import { useNavigate } from 'react-router-dom';
 import { configSession } from 'src/utils/configSession';
 import SnackBarWrapper from 'src/components/SnackBar';
 import { useSnackbar } from 'src/hooks/useSnackbar';
 
-
 const Form = () => {
     const [formData, setFormData] = useState({ email: '', password: '' });
+    const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
     const { data, error, loading, executeFetch } = useFetchData();
     const { setSession } = configSession();
@@ -20,18 +21,22 @@ const Form = () => {
 
     useEffect(() => {
         if (data && data.code === 200) {
-            console.log("TOKEN: ?================", data.data.token)
-            setSession(data.data.token); 
+            console.log("TOKEN: ?================", data.data.token);
+            setSession(data.data.token);
             navigate('/inicio');
-        } else if (data && data.code !== 200) {
+        } else if (error) {
             setSnackbarMessage(error.message || 'Ocurrió un error durante el registro.');
             setSnackbarType('error');
             handleOpenSnack();
         }
-    }, [data, error, navigate]);
+    }, [data, error, navigate, handleOpenSnack, setSession]);
 
     const handleChange = (event) => {
         setFormData({ ...formData, [event.target.name]: event.target.value });
+    };
+
+    const handleTogglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
     };
 
     const handleSubmit = async (event) => {
@@ -74,12 +79,24 @@ const Form = () => {
                 />
                 <Input
                     label="Contraseña"
-                    type="password"
+                    type={showPassword ? 'text' : 'password'}
                     value={formData.password}
                     onChange={handleChange}
                     name="password"
                     margin="normal"
                     fullWidth
+                    endAdornment={
+                        <InputAdornment position="end">
+                            <Tooltip title={showPassword ?  'Ocultar Contraseña' : 'Mostrar contraseña'  } arrow>
+                            <IconButton
+                                aria-label="toggle password visibility"
+                                onClick={handleTogglePasswordVisibility}
+                            >
+                                {showPassword ? <VisibilityOff color='primary' /> : <Visibility color='primary' />}
+                            </IconButton>
+                            </Tooltip>
+                        </InputAdornment>
+                    }
                 />
                 <Button
                     text="Siguiente"

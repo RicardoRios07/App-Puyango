@@ -19,7 +19,6 @@ export const routes = [
         path: '/',
         element: <BaseLayout />,
         children: [
-            // Ruta base para Home
             {
                 path: '/',
                 element: <HomePage />,
@@ -64,5 +63,4 @@ export const routes = [
             },
         ],
     },
-    // ... aquí puedes agregar más rutas según sea necesario
 ];

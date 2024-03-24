@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { TextField, useTheme } from '@mui/material';
+import { TextField, useTheme, InputAdornment } from '@mui/material';
 
-const Input = ({ label, type, value, onChange, error, helperText, ...otherProps }) => {
-    const theme = useTheme(); // Accede al tema
+const Input = ({ label, type, value, onChange, error, helperText, endAdornment, ...otherProps }) => {
+    const theme = useTheme(); 
 
-    // Estilos personalizados para TextField que se ajustan a tu tema
     const customStyles = {
         '& label.Mui-focused': {
             color: theme.palette.primary.main,
@@ -29,7 +28,11 @@ const Input = ({ label, type, value, onChange, error, helperText, ...otherProps 
         },
         '& .MuiFormHelperText-root.Mui-error': {
             color: theme.palette.error.main,
-        }
+        },
+        '& .MuiInputAdornment-root': {
+            position: 'absolute',
+            right: 0,
+        },
     };
 
     return (
@@ -42,9 +45,16 @@ const Input = ({ label, type, value, onChange, error, helperText, ...otherProps 
             helperText={helperText}
             variant="outlined"
             InputLabelProps={{
-                style: { color: theme.palette.text.primary }
+                style: { color: theme.palette.text.primary },
             }}
             sx={customStyles}
+            InputProps={{
+                endAdornment: endAdornment && (
+                    <InputAdornment position="end">
+                        {endAdornment}
+                    </InputAdornment>
+                ),
+            }}
             {...otherProps}
         />
     );
@@ -56,13 +66,15 @@ Input.propTypes = {
     value: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     error: PropTypes.bool,
-    helperText: PropTypes.string
+    helperText: PropTypes.string,
+    endAdornment: PropTypes.node,
 };
 
 Input.defaultProps = {
     type: 'text',
     error: false,
-    helperText: ''
+    helperText: '',
+    endAdornment: null,
 };
 
 export default Input;
