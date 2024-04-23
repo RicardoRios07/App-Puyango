@@ -1,20 +1,22 @@
 import React, { useEffect } from 'react';
 import { Container, Grid, Typography } from '@mui/material';
 import CustomCard from 'src/components/Card'; 
-
+import { useDialog } from 'src/hooks/useDialog';
 import useFetchData from 'src/hooks/useFetchData';
+import BackdropWrapper from 'src/components/Backdrop';
 
 const Denuncias = () => {
     const { data, error, loading, executeFetch } = useFetchData();
+	const { isOpen, handleOpen, handleClose, dataContent } = useDialog()
 
     useEffect(() => {
         executeFetch({ endPoint: 'denuncias/getAllDenuncias', method: 'GET' });
     }, []);
 
-    if (loading) return <Typography>Cargando denuncias...</Typography>;
-    if (error) return <Typography>Error al obtener las denuncias: {error}</Typography>;
 
     return (
+        <>
+        <BackdropWrapper open={loading} />
         <Container>
             <Grid container spacing={2} width='100%'>
                 {data && data.status === 'success' && data.data.map((denuncia) => (
@@ -22,6 +24,7 @@ const Denuncias = () => {
                 ))}
             </Grid>
         </Container>
+        </>
     );
 };
 

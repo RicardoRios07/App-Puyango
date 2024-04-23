@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import Input from 'src/components/Input'; 
-import Button from 'src/components/Button';
 import { Box, Typography, Link, InputAdornment, IconButton, Tooltip } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
+import Input from 'src/components/Input';
+import Button from 'src/components/Button';
 import useFetchData from 'src/hooks/useFetchData';
 import { useNavigate } from 'react-router-dom';
 import { configSession } from 'src/utils/configSession';
 import SnackBarWrapper from 'src/components/SnackBar';
 import { useSnackbar } from 'src/hooks/useSnackbar';
+import BackdropWrapper from 'src/components/Backdrop';
 
 const Form = () => {
     const [formData, setFormData] = useState({ email: '', password: '' });
@@ -21,16 +22,15 @@ const Form = () => {
 
     useEffect(() => {
         if (data && data.code === 200) {
-            console.log("TOKEN: ?================", data.data.token);
-            setSession(data.data.token);
+            setSession(data.data.token, data.data.expiration);
             navigate('/inicio');
         } else if (error) {
-            setSnackbarMessage(error.message || 'Ocurrió un error durante el registro.');
+            setSnackbarMessage(error.message || 'Ocurrió un error durante el inicio de sesión.');
             setSnackbarType('error');
             handleOpenSnack();
         }
     }, [data, error, navigate, handleOpenSnack, setSession]);
-
+    
     const handleChange = (event) => {
         setFormData({ ...formData, [event.target.name]: event.target.value });
     };
@@ -44,7 +44,10 @@ const Form = () => {
         executeFetch({ endPoint: 'auth/login', method: 'POST', data: formData });
     };
 
+
     return (
+        <>
+        <BackdropWrapper open={loading} />
         <Box
             sx={{
                 display: 'flex',
@@ -121,6 +124,7 @@ const Form = () => {
                 text={snackbarMessage}
             />
         </Box>
+        </>
     );
 };
 

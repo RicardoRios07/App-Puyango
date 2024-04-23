@@ -30,8 +30,6 @@ const Header = () => {
 		return null;
 	}
 
-	console.log('userData', userData?.nombreCompleto)
-
 	return (
 		<Box
 			className="header"
@@ -39,7 +37,7 @@ const Header = () => {
 			alignItems="center"
 			sx={{
 				...header,
-				zIndex: 4,
+				zIndex: 9,
 				backdropFilter: 'blur(10px)',
 				position: 'fixed',
 				width: '100%',

@@ -6,7 +6,8 @@ import {
     Person,
     Visibility,
     Construction,
-    Check
+    Check,
+    Create
 } from '@mui/icons-material';
 import ChipStatus from 'src/components/Chip/ChipStatus';
 
@@ -42,16 +43,28 @@ const CustomCard = ({ denuncia }) => {
                     width: '100hv',
                     display: 'flex',
                     flexDirection: 'column',
-                    boxShadow: 3,
-                }}>
+                    border: '1px',
+                    transition: 'transform 0.3s ease-in-out',
+                    ":hover": {
+                        transform: 'scale(1.05)',
+                    }
+                }}
+                onClick={() => console.log('Click en card')}
+            >
                 <CardMedia
                     component="img"
-                    height="150"
+                    height="250"
                     image={denuncia.evidencia}
                     alt="Evidencia"
                 />
                 <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
+                    {/* <Typography gutterBottom variant="h5" component="div">
+                        {denuncia.tituloDenuncia}
+                    </Typography> */}
+                    <Typography variant="h5" color="text.secondary" display="flex" alignItems="center">
+                    <Create sx={{ marginRight: 1 }} color='primary' /> Concepto:
+                    </Typography>
+                    <Typography variant="body1" color="text.secondary">
                         {denuncia.tituloDenuncia}
                     </Typography>
 
@@ -69,10 +82,9 @@ const CustomCard = ({ denuncia }) => {
                         {denuncia.nombreDenunciante}
                     </Typography> */}
                     <Typography variant="h5" color="text.secondary" display="flex" alignItems="center">
-                        <Person sx={{ marginRight: 1 }} color='primary' /> Denunciante: 
+                        <Person sx={{ marginRight: 1 }} color='primary' /> Denunciante:
                     </Typography>
                     <Typography variant="body1" color="text.secondary">
-                        {/* Mostrar solo la primera palabra y ofuscar las demás */}
                         {obfuscateText(denuncia.nombreDenunciante)}
                     </Typography>
 
@@ -82,6 +94,7 @@ const CustomCard = ({ denuncia }) => {
                     <Typography variant="body1" color="text.secondary">
                         <a href={`https://www.google.com/maps?q=${denuncia.ubicacion}`} target="_blank">Ver Ubicación</a>
                     </Typography>
+                    <br />
 
                     <ChipStatus text={denuncia.estado} color={color} icon={icon} />
                 </CardContent>

@@ -17,7 +17,7 @@ const ChipStatus = ({ text, color, icon, ...rest }) => {
                     color: (theme) => `${theme.colors[color].main} !important`,
                     width: '20px',
                     height: '20px',
-                }
+                },
             }}
             {...rest}
         />

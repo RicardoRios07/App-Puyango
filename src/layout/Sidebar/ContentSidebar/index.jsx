@@ -28,7 +28,7 @@ const ContentSidebar = () => {
 					// minWidth: theme.sidebar.width,
 					widht:20,
 					color: theme.colors.alpha.trueWhite[70],
-					zIndex: 7,	
+					zIndex: 10,	
 					height: '90%',
 					borderRadius: 2,
 					position: 'fixed',

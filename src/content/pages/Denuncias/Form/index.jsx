@@ -1,39 +1,38 @@
 import React, { useState } from 'react';
-import { TextField, Select, MenuItem, InputLabel, FormControl, Grid, Box, Paper, Typography } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { TextField, Select, MenuItem, InputLabel, FormControl, Grid, Box, Typography } from '@mui/material';
 import Button from 'src/components/Button';
-
-const Input = styled('input')({
-    display: 'none',
-});
+import MapComponent from './Map';
+import InputImage from 'src/components/InputImage';
+import BackdropWrapper from 'src/components/Backdrop';
 
 const FormDenuncias = () => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-    const [evidence, setEvidence] = useState(null);
-    const [location, setLocation] = useState('');
+    const [evidence, setEvidence] = useState('');
+    const [location, setLocation] = useState({ lat: -3.968, lng: -80.053 });
     const [category, setCategory] = useState('');
 
-    const handleSelectLocation = address => {
-        setLocation(address);
+    const handleSelectLocation = ({ lat, lng }) => {
+        setLocation({ lat, lng });
+        console.log("Ubicación seleccionada:", { lat, lng });
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Aquí manejarías el envío del formulario
+        
+        // Aquí manejarías el envío del formulario, por ejemplo a un API
     };
 
     return (
-        <Box elevation={3} sx={{ px: 20, margin: 'auto', flexGrow: 1, py: 10 }}>
-            <Typography variant="h3" component="div">
-                Crear denuncias
+        <>
+        <BackdropWrapper  open={true} />
+        <Box sx={{ px: 20, py:10 }}>
+            <Typography variant="h3" component="div" textAlign="center">
+                Crear Denuncias
             </Typography>
-            <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-                <Grid container spacing={2}>
+            <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 3 }}>
+                <Grid container spacing={3} justifyContent="center">
                     <Grid item xs={12}>
-                        <Typography variant="h6" gutterBottom component="div">
-                            Información de la denuncia
-                        </Typography>
                         <TextField
                             label="Título de la denuncia"
                             value={title}
@@ -56,20 +55,20 @@ const FormDenuncias = () => {
                         />
                     </Grid>
                     <Grid item xs={12}>
-                        <label htmlFor="contained-button-file">
-                            <Input
-                                id="contained-button-file"
-                                type="file"
-                                onChange={(e) => setEvidence(e.target.files[0])}
-                                accept="image/*"
-                            />
-                            <Button variant="contained" component="button">
-                                Agregue una foto de evidencia
-                            </Button>
-                        </label>
+                        <InputImage
+                            id="evidence-input"
+                            name="evidence"
+                            title="Subir Evidencia"
+                            accept="image/*"
+                            isRequired={true}
+                            defaultImg={evidence}
+                            onChange={(newSrc) => setEvidence(newSrc)}
+                        />
                     </Grid>
                     <Grid item xs={12}>
-                        {/* Aquí deberías insertar tu componente de mapa para seleccionar la ubicación */}
+                        <div style={{ height: '400px', width: '100%' }}>
+                        <MapComponent onMarkerSet={handleSelectLocation} />
+                        </div>
                     </Grid>
                     <Grid item xs={12}>
                         <FormControl fullWidth>
@@ -89,14 +88,14 @@ const FormDenuncias = () => {
                         </FormControl>
                     </Grid>
                     <Grid item xs={12}>
-                        <Button variant="contained" color="primary" onClick={handleSubmit} fullWidth>
-                            Enviar denuncia
-                        </Button>
+                        <Button variant="contained" color="primary" text="Enviar denuncia" />
+                        
                     </Grid>
                 </Grid>
             </Box>
         </Box>
+        </>
     );
-}
+};
 
 export default FormDenuncias;

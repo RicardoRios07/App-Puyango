@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Grid, Typography, CircularProgress } from '@mui/material';
 import { CheckCircleOutline as CheckCircleOutlineIcon, ErrorOutline as ErrorOutlineIcon } from '@mui/icons-material';
 import useFetchData from 'src/hooks/useFetchData';
+import BackdropWrapper from 'src/components/Backdrop';
 
 const VerificarCuenta = () => {
     const { token } = useParams();
@@ -31,9 +32,10 @@ const VerificarCuenta = () => {
         };
     }, [data, navigate]);
 
-    if (loading) return <CircularProgress />;
+    if (loading) return <BackdropWrapper open={loading} />;
 
     return (
+
         <Grid container spacing={2} alignItems="center" justifyContent="center">
             <Grid item xs={12} textAlign="center">
                 {error ? (

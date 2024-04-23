@@ -73,7 +73,7 @@ const Sidebar = () => {
 								ml: 5,
 
 							},
-							zIndex: 1,
+							zIndex: 2,
 						}}>
 						<Outlet />
 					</Box>

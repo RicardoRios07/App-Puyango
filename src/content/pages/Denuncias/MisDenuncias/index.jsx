@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Grid, Card, CardContent, Typography, CardMedia, Container } from '@mui/material';
 import useFetchData from 'src/hooks/useFetchData';
 import CustomCard from 'src/components/Card'; 
+import BackdropWrapper from 'src/components/Backdrop';
 
 const Denuncias = () => {
     const { data, error, loading, executeFetch } = useFetchData();
@@ -10,10 +11,11 @@ const Denuncias = () => {
         executeFetch({ endPoint: 'denuncias/getDenunciasUser', method: 'GET' });
     }, []);
 
-    if (loading) return <Typography>Cargando denuncias...</Typography>;
-    if (error) return <Typography>Error al obtener las denuncias: {error}</Typography>;
+
 
     return (
+        <>
+        <BackdropWrapper open={loading} />
         <Container>
             <Grid container spacing={2} width='100%'>
                 {data && data.status === 'success' && data.data.map((denuncia) => (
@@ -21,6 +23,7 @@ const Denuncias = () => {
                 ))}
             </Grid>
         </Container>
+        </>
     );
 };
 

@@ -7,6 +7,7 @@ import useFetchData from 'src/hooks/useFetchData';
 import { useNavigate } from 'react-router-dom';
 import SnackBarWrapper from 'src/components/SnackBar';
 import { useSnackbar } from 'src/hooks/useSnackbar';
+import BackdropWrapper from 'src/components/Backdrop';
 
 const Form = () => {
     const [formData, setFormData] = useState({
@@ -55,6 +56,8 @@ const Form = () => {
     };
 
     return (
+        <>
+        <BackdropWrapper open={loading} />
         <Box
             sx={{
                 display: 'flex',
@@ -158,6 +161,7 @@ const Form = () => {
                 text={snackbarMessage}
             />
         </Box>
+        </>
     );
 };
 
