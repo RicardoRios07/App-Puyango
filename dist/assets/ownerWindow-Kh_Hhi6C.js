@@ -1,1 +1,0 @@
-import{t as r}from"./index-LcRiL3e7.js";function a(...t){return t.reduce((n,e)=>e==null?n:function(...o){n.apply(this,o),e.apply(this,o)},()=>{})}function d(t,n=166){let e;function i(...o){const u=()=>{t.apply(this,o)};clearTimeout(e),e=setTimeout(u,n)}return i.clear=()=>{clearTimeout(e)},i}function l(t){return r(t).defaultView||window}export{a as c,d,l as o};
