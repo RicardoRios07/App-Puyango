@@ -22,7 +22,8 @@ const Form = () => {
 
     useEffect(() => {
         if (data && data.code === 200) {
-            setSession(data.data.token, data.data.expiration);
+            setSession(data.data);
+            console.log('token ==========',data.data.token);
             navigate('/inicio');
         } else if (error) {
             setSnackbarMessage(error.message || 'Ocurrió un error durante el inicio de sesión.');
@@ -42,6 +43,7 @@ const Form = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         executeFetch({ endPoint: 'auth/login', method: 'POST', data: formData });
+        console.log('Fetching data...', executeFetch)
     };
 
 
