@@ -1,29 +1,28 @@
-import { useState } from "react"
+import { useState } from 'react';
 
 export const useInputImage = () => {
+    const [loading, setLoading] = useState(false);
+    const [src, setSrc] = useState('');
+    const [file, setFile] = useState(null);
 
-	const [image, setImage] = useState({ src: '', loading: false })
-	const { src, loading } = image
+    const handleLoadImage = (event) => {
+        const reader = new FileReader();
+        const file = event.target.files[0];
+        if (file) {
+            setLoading(true);
+            reader.onloadend = () => {
+                setSrc(reader.result);
+                setFile(file);
+                setLoading(false);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
 
-	const handleLoadImage = ({ target }) => {
-		setImage({ src: '', loading: true })
-		let reader = new FileReader();
-		reader.onload = () => {
-			setImage({ src: reader.result, loading: false })
-		};
-		try {
-			reader.readAsDataURL(target.files[0]);
-		} catch (error) { 
-			
-		}
-	}
-	const resetImage = () => {
-		setImage({ src: '', loading: false })
-	}
-	return {
-		handleLoadImage,
-		src,
-		loading,
-		resetImage,
-	}
-}
+    const resetImage = () => {
+        setSrc('');
+        setFile(null);
+    };
+
+    return { handleLoadImage, loading, src, file, resetImage };
+};

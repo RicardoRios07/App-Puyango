@@ -14,5 +14,4 @@ export const useFetchData = () => {
     return { ...fetchData, executeFetch };
 };
 
-
 export default useFetchData;

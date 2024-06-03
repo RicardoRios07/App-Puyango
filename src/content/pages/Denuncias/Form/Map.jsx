@@ -14,7 +14,6 @@ const MapComponent = ({ onMarkerSet }) => {
                 },
                 (err) => {
                     console.warn(`ERROR(${err.code}): ${err.message}`);
-                    // Establece una ubicación predeterminada si falla la geolocalización
                     setMarkerPosition({ lat: -3.968, lng: -80.053 });
                 },
                 {
