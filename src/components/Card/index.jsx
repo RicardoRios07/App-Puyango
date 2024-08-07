@@ -7,7 +7,8 @@ import {
     Visibility,
     Construction,
     Check,
-    Create
+    Create,
+    DateRange
 } from '@mui/icons-material';
 import ChipStatus from 'src/components/Chip/ChipStatus';
 
@@ -75,6 +76,13 @@ const CustomCard = ({ denuncia }) => {
                         {denuncia.descripcion}
                     </Typography>
 
+
+                    <Typography variant="h5" color="text.secondary" display="flex" alignItems="center">
+                    <DateRange sx={{ marginRight: 1 }} color='primary' /> Fecha:
+                    </Typography>
+                    <Typography variant="body1" color="text.secondary">
+                        {denuncia.fechaHora}
+                    </Typography>
                     {/* <Typography variant="h5" color="text.secondary" display="flex" alignItems="center">
                         <Person sx={{ marginRight: 1 }} color='primary' /> Denunciante: 
                     </Typography>

@@ -69,6 +69,9 @@ const FormDenuncias = () => {
                 <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 3 }}>
                     <Grid container spacing={3} justifyContent="center">
                         <Grid item md={8} xs={12}>
+                            <Typography variant="h6" component="div">
+                                Paso 1: Rellene el campo con una descripción breve del problema.
+                            </Typography>
                             <TextField
                                 label="Concepto de la denuncia"
                                 value={title}
@@ -81,6 +84,9 @@ const FormDenuncias = () => {
                             />
                         </Grid>
                         <Grid item md={8} xs={12}>
+                            <Typography variant="h6" component="div">
+                                Paso 2: Proporcione una descripción detallada del problema:
+                            </Typography>
                             <TextField
                                 label="Descripción"
                                 value={description}
@@ -95,22 +101,30 @@ const FormDenuncias = () => {
                             />
                         </Grid>
                         <Grid item md={8} xs={12}>
+                            <Typography variant="h6" component="div">
+                                Paso 3: Si tiene evidencia visual, puede subir una imagen en el siguiente apartado:
+                            </Typography>
                             <InputImage
                                 id="evidence-input"
                                 name="evidence"
-                                title="Subir Evidencia"
+                                title="Subir imagen de evidencia"
                                 accept="image/*"
                                 isRequired={false}
                                 onChange={(file) => setEvidence(file)}
                             />
                         </Grid>
                         <Grid item md={8} xs={12}>
-                            <Typography variant="h6" component="h6" gutterBottom>Ubicación de la denuncia</Typography>
+                            <Typography variant="h6" component="div">
+                                Paso 4: Seleccione la ubicación del problema en el mapa.
+                            </Typography>
                             <div style={{ height: '400px', width: '100%' }}>
                                 <MapComponent onMarkerSet={handleSelectLocation} />
                             </div>
                         </Grid>
                         <Grid item md={8} xs={12}>
+                            <Typography variant="h6" component="div">
+                                Paso 5: Seleccione la categoría adecuada para su denuncia.
+                            </Typography>
                             <FormControl fullWidth error={!!errors.category}>
                                 <InputLabel id="category-label">Categoría</InputLabel>
                                 <Select
@@ -128,7 +142,7 @@ const FormDenuncias = () => {
                                 {errors.category && <Typography color="error">{errors.category}</Typography>}
                             </FormControl>
                         </Grid>
-                        </Grid>
+                    </Grid>
                     <Box display="flex" justifyContent="center" sx={{ mt: 4 }}>
                         <Button type="submit" variant="contained" text="Enviar"/>
                     </Box>

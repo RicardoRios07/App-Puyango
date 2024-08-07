@@ -97,7 +97,7 @@ const Form = () => {
                                 aria-label="toggle password visibility"
                                 onClick={handleTogglePasswordVisibility}
                             >
-                                {showPassword ? <VisibilityOff color='primary' /> : <Visibility color='primary' />}
+                                {showPassword ? <Visibility color='primary' /> : <VisibilityOff color='primary' />}
                             </IconButton>
                             </Tooltip>
                         </InputAdornment>
@@ -113,7 +113,7 @@ const Form = () => {
                 />
             </Box>
             <Typography variant="body2">
-                {'Si ya tienes una cuenta '}
+                {'Aún no tienes cuenta? '}
                 <Link href="/register" variant="body2">
                     {'Ingresa aquí'}
                 </Link>

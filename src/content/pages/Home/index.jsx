@@ -13,7 +13,7 @@ const Home = () => {
 
     return (
         <Box sx={{ display: 'flex', height: '100vh' }}>
-            <Banner backgroundImage="/img/background.png" />
+            <Banner backgroundImage="/img/background.jpg" />
             <Welcome onButtonClick={handleNext} />
         </Box>
     );

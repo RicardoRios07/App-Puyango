@@ -148,7 +148,7 @@ const Form = () => {
                 />
             </Box>
             <Typography variant="body2">
-                {'Aún no tienes una cuenta? '}
+                {'Ya tienes una cuenta? '}
                 <Link href="/login" variant="body2">
                     {'Ingresa aquí'}
                 </Link>

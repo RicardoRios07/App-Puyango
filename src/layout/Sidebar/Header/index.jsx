@@ -44,9 +44,10 @@ const Header = () => {
 				paddingRight: spacing(2),
 			}}
 		>
+		
 			{/* <Box
 					sx={{
-						maskImage: 'url(/img/tikee-h-blanco.png)',
+						maskImage: 'url(/img/tikee-h-blanco2.png)',
 						maskPosition: 'center',
 						maskRepeat: 'no-repeat',
 						width: 150,
@@ -64,11 +65,11 @@ const Header = () => {
 				<Tooltip title="Usuario" arrow>
 					<Typography fontWeight="500" variant="h4">{userData?.nombreCompleto}</Typography>
 				</Tooltip>
-				<Tooltip title="Editar Perfil" arrow>
+				{/* <Tooltip title="Editar Perfil" arrow>
 					<IconButton>
 						<RiSettings2Line color="primary" />
 					</IconButton>
-				</Tooltip>
+				</Tooltip> */}
 				<Tooltip title="Foto de perfil" arrow>
 					<Avatar
 						sx={{ backgroundColor: theme.palette.primary.main }}

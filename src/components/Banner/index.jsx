@@ -1,8 +1,6 @@
 import React from 'react';
 import { Box, IconButton, useTheme, Typography } from '@mui/material';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import { Facebook, X, Language} from '@mui/icons-material';
 import logo from '/img/gadPuyangoOrg.png';
 import footerImage from '/img/tikee-h-blanco.png';
 
@@ -47,14 +45,14 @@ const Banner = ({ backgroundImage }) => {
                         margin: theme.spacing(1),
                     },
                 }}>
-                    <IconButton color="inherit" aria-label="facebook" size="large" href='https://www.facebook.com'>
-                        <FacebookIcon sx={{ color: theme.palette.common.white }} />
+                    <IconButton color="inherit" aria-label="facebook" size="large" href='https://www.facebook.com/MunicipioDePuyango/?locale=es_LA' target='_blank'>
+                        <Facebook sx={{ color: theme.palette.common.white }} />
                     </IconButton>
-                    <IconButton color="inherit" aria-label="twitter" size="large" href='https://www.facebook.com'>
-                        <TwitterIcon sx={{ color: theme.palette.common.white }} />
+                    <IconButton color="inherit" aria-label="twitter" size="large" href='https://x.com/depuyango?lang=es' target='_blank'>
+                        <X sx={{ color: theme.palette.common.white }} />
                     </IconButton>
-                    <IconButton color="inherit" aria-label="whatsapp" size="large" href='https://www.facebook.com'>
-                        <WhatsAppIcon sx={{ color: theme.palette.common.white }} />
+                    <IconButton color="inherit" aria-label="whatsapp" size="large" href='https://www.gadmpuyango.gob.ec' target='_blank'>
+                        <Language sx={{ color: theme.palette.common.white }} />
                     </IconButton>
                 </Box>
                 {/* Footer Section */}
@@ -71,7 +69,7 @@ const Banner = ({ backgroundImage }) => {
                     </Typography>
                     <Box sx={{
                         width: 'auto',
-                        height: 'auto', 
+                        height: 'auto',
                         display: 'flex',
                         justifyContent: 'center',
                         mt: theme.spacing(1),
