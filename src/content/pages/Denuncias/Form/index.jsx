@@ -5,6 +5,7 @@ import MapComponent from './Map';
 import InputImage from 'src/components/InputImage';
 import BackdropWrapper from 'src/components/Backdrop';
 import useFetchData from 'src/hooks/useFetchData';
+import SnackBarWrapper from 'src/components/SnackBar';
 
 const FormDenuncias = () => {
     const [title, setTitle] = useState('');
@@ -44,11 +45,12 @@ const FormDenuncias = () => {
                 endPoint: 'denuncias/nuevaDenuncia',
                 method: 'POST',
                 data: formData,
-            });
+            }); 
 
             handleResetForm();
         }
     };
+
 
     const handleResetForm = () => {
         setTitle('');
@@ -61,6 +63,11 @@ const FormDenuncias = () => {
 
     return (
         <>
+            <SnackBarWrapper
+                isOpen={!!data}
+                text={data?.message}
+                handleClose={() => handleResetForm()}
+            />
             <BackdropWrapper open={loading} />
             <Box sx={{ px: 20, py: 10 }}>
                 <Typography variant="h3" component="div" textAlign="center" sx={{ ml: 10 }}>

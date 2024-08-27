@@ -9,7 +9,6 @@ export const configSession = () => {
 	}
 
 	const getUserData = () => JSON.parse(Cookies.get('USRD') || '{}')
-    console.log('getUserData', getUserData)
 
 	const isAuthenticated = !!Cookies.get('USRD')
 

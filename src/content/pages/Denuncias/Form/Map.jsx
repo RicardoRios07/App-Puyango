@@ -10,7 +10,6 @@ const MapComponent = ({ onMarkerSet }) => {
                 (position) => {
                     const { latitude, longitude } = position.coords;
                     setMarkerPosition({ lat: latitude, lng: longitude });
-                    console.log("Ubicación inicial actual:", { lat: latitude, lng: longitude });
                 },
                 (err) => {
                     console.warn(`ERROR(${err.code}): ${err.message}`);
@@ -27,7 +26,6 @@ const MapComponent = ({ onMarkerSet }) => {
         const [lat, lng] = latLng;
         setMarkerPosition({ lat, lng });
         onMarkerSet({ lat, lng });
-        console.log("Nueva ubicación seleccionada:", { lat, lng });
     };
 
     return (
@@ -38,7 +36,6 @@ const MapComponent = ({ onMarkerSet }) => {
                             const { lat, lng } = event.latLng;
                             setMarkerPosition({ lat, lng });
                             onMarkerSet({ lat, lng });
-                            console.log("Marcador arrastrado a:", { lat, lng });
                         }} />
             )}
         </Map>

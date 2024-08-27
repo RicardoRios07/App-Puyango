@@ -50,7 +50,6 @@ const CustomCard = ({ denuncia }) => {
                         transform: 'scale(1.05)',
                     }
                 }}
-                onClick={() => console.log('Click en card')}
             >
                 <CardMedia
                     component="img"
