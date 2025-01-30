@@ -1,8 +1,8 @@
 import React from 'react';
 import { Box, IconButton, useTheme, Typography } from '@mui/material';
 import { Facebook, X, Language} from '@mui/icons-material';
-import logo from '/img/gadPuyangoOrg.png';
-import footerImage from '/img/tikee-h-blanco.png';
+import logo from '/img/gadPuyangoOrg.webp';
+import footerImage from '/img/tikee-h-blanco.webp';
 
 const Banner = ({ backgroundImage }) => {
     const theme = useTheme();

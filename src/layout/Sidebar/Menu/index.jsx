@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Button, Stack, Typography } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import { RiHome4Line, RiFileEditLine, RiStackLine, RiPieChart2Line, RiQuestionLine } from '@remixicon/react';
-import GadImage from '/img/LogoGadBlanco.png';
+import GadImage from '/img/LogoGadBlanco.webp';
 
 const Menu = () => {
 	return (
